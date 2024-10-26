@@ -1,15 +1,17 @@
-from setuptools import setup, find_packages
-
 from typing import List
 
-DOT = "-e ."
+from setuptools import find_packages, setup
 
-def get_requirements(file_path: str) -> list[str]:
-    with open(file_path) as file_obj:  # Burada open fonksiyonunu düzeltin
+HYPEN_E_DOT = '-e .'
+def get_requirements(file_path:str)->List[str]: #Parametre string tipinde olucak ve bu fonskiyon içi string tipinde elemanları olan bir liste döndürecektir
+    """
+    Bu fonksiyon gereken kütüphaneleri listenin elemanı olarak dönecektir.
+    """
+    with open(file_path) as file_obj:
         requirements = file_obj.readlines()
-        requirements = [req.replace('\n', "") for req in requirements]
-        if DOT in requirements:
-            requirements.remove(DOT)
+        requirements = [req.replace('\n',"") for req in requirements]
+        if HYPEN_E_DOT in requirements:
+            requirements.remove(HYPEN_E_DOT)
 
     return requirements
 
