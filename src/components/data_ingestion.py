@@ -15,7 +15,7 @@ from src.components.model_trainer import ModelTrainer
 
 
 
-@dataclass # __init__ fonksiyonunu yazmadan özellik tanımamı sağlar
+@dataclass 
 class DataIngestionConfig:
     train_data_path: str = os.path.join('artifacts',"train.csv")
     test_data_path: str = os.path.join('artifacts',"test.csv")
@@ -25,7 +25,7 @@ class DataIngestionConfig:
     
 class DataIngestion:
     def __init__(self):
-        self.ingestion_config = DataIngestionConfig() #train, test ve ham datanın yollarını oluşturma işini ingestion_config değişkenine atıyor.
+        self.ingestion_config = DataIngestionConfig()
 
     def initiate_data_ingestion(self):
         logging.info('Data İngestion Sınıfına Girildi ve Çalışıldı')
@@ -33,9 +33,9 @@ class DataIngestion:
             df = pd.read_csv(r"C:\Users\90530\Desktop\MLOpsProject\stud.csv")
             logging.info('Veri Seti Okundu')
 
-            os.makedirs(os.path.dirname(self.ingestion_config.train_data_path)) # train_data nın klasörünü oluşturur
+            os.makedirs(os.path.dirname(self.ingestion_config.train_data_path)) 
 
-            df.to_csv(self.ingestion_config.raw_data_path, index=False,header = True) # Ham datayı csv formatında bir dosyaya dönüştürerek kaydeder
+            df.to_csv(self.ingestion_config.raw_data_path, index=False,header = True)
 
             logging.info('Train Test Data Ayrımına Başlandı')
             train_set, test_set = train_test_split(df, test_size = 0.2, random_state = 42)
